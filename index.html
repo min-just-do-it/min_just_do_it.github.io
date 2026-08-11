@@ -426,7 +426,6 @@
       0%,100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
-<!-- 되는지 체크-->
     section { padding: 42px 0; }
     .section-head { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 24px; }
     .section-head h2 { margin: 0; font-size: clamp(28px, 4vw, 46px); letter-spacing: -0.04em; }
@@ -469,9 +468,59 @@
 
     .problem-solution { display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 18px; }
     .split-panel { min-height: 320px; }
-    .process { display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .process-step { position: relative; padding: 24px 18px 22px; }
+    .process {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 34px;
+      justify-items: center;
+    }
+    .process-step-grid {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: nowrap;
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+    .process-step-grid::-webkit-scrollbar {
+      height: 8px;
+    }
+    .process-step-grid::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.12);
+      border-radius: 999px;
+    }
+    .process-step {
+      position: relative;
+      padding: 24px 18px 22px;
+      min-width: 220px;
+      max-width: 280px;
+      flex: 1 1 220px;
+    }
+    .process-step img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 18px;
+      object-fit: cover;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16);
+      background: rgba(255,255,255,0.04);
+    }
+    #processImage {
+      width: min(1024px, 100%);
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 28px;
+      box-shadow: 0 32px 100px rgba(0, 0, 0, 0.22);
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+    }
     .step-no { color: var(--amber-soft); font-size: 13px; text-transform: uppercase; letter-spacing: .12em; }
+    .process-step h4 { margin: 10px 0 8px; font-size: 22px; letter-spacing: -0.03em; }
     .process-step h4 { margin: 10px 0 8px; font-size: 22px; letter-spacing: -0.03em; }
     .process-step::after {
       content:''; position:absolute; top: 36px; right:-10px; width:20px; height:1px;
@@ -638,11 +687,10 @@
 
         <div class="container">
           <div class="hero-comment">
-            <p>밤껍질을 자원으로 전환해 농업 현장의 비용과 탄소 부담을 동시에 줄입니다.<br>이러한 <b>친환경 비료보조제는 바이오차(Bio Char)</b>라고 합니다.</p>
+            <p>밤껍질을 자원으로 전환해 농업 현장의 비용과 탄소 부담을 동시에 줄입니다.<br>이러한 <b>친환경 보조제를 바이오차(Bio Char)</b>라고 합니다.<br>바이오차(Biochar)는 바이오매스(Biomass)와 숯(Charcoal)의 합성어로,<br>보통 나무·왕겨·가축분 같은 유기물을 산소가 거의 없는 조건에서 350℃ 이상으로 열분해해서 만든 고체 탄소물질을 말합니다.<br>열분해 과정에서 휘발성 성분이 빠져나가고, 남은 고형물에는 안정된 형태의 탄소가 응축되는데, 이 바이오차를 토양에 섞으면 <b>탄소가 공기 중으로 배출되지 않고 오랫동안 남게 되는 현상인 '탄소 네거티브'<b>가 일어납니다.<br>이러한 효과로 인해, 환경오염의 주범인 탄소 배출을 막을 수 있습니다.</p>
           </div>
         </div>
       </section>
-<!--여기 안보임.-->
       <section id="story" class="reveal">
         <div class="container">
           <div class="section-head">
@@ -697,16 +745,18 @@
             <p>원료 수급부터 제품 활용까지 직관적으로 이해되는 4단계 구조</p>
           </div>
           <div class="process">
-            <div class="card process-step">
-              <div class="step-no">STEP 01</div>
-              <h4>원료 수급</h4>
-              <p>지역 농가·가공 거점에서 밤 외피를 모아 원료 흐름을 안정화합니다.</p>
-            </div>
-            <div class="card process-step">
-              <div class="step-no">STEP 02</div>
-              <h4>열분해</h4>
-              <p>통제된 공정으로 탄소 함량과 품질 균형을 맞춘 바이오차를 생산합니다.</p>
-            </div>
+            <img id="processImage" src="생산공정.png" alt="바이오차 생산공정 이미지">
+            <div class="process-step-grid">
+              <div class="card process-step">
+                <div class="step-no">STEP 01</div>
+                <h4>원료 수급</h4>
+                <p>지역 농가·가공 거점에서 밤 외피를 모아 원료 흐름을 안정화합니다.</p>
+              </div>
+              <div class="card process-step">
+                <div class="step-no">STEP 02</div>
+                <h4>열분해</h4>
+                <p>통제된 공정으로 탄소 함량과 품질 균형을 맞춘 바이오차를 생산합니다.</p>
+              </div>
             <div class="card process-step">
               <div class="step-no">STEP 03</div>
               <h4>제품화</h4>
@@ -717,6 +767,7 @@
               <h4>현장 적용</h4>
               <p>농업·토양 복원·환경 개선·ESG 프로그램 등 여러 시장에 연결합니다.</p>
             </div>
+          </div>
           </div>
         </div>
       </section>
