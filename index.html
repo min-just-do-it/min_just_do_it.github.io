@@ -41,6 +41,26 @@
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
 
+      // Ensure .reveal sections become visible when scrolled into view.
+      (function() {
+        const reveals = document.querySelectorAll('.reveal');
+        if (!reveals.length) return;
+
+        if ('IntersectionObserver' in window) {
+          const io = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.08 });
+          reveals.forEach(el => io.observe(el));
+        } else {
+          // Fallback: reveal all after load
+          window.addEventListener('load', () => reveals.forEach(el => el.classList.add('show')));
+        }
+      })();
     .shells {
       position: fixed;
       inset: 0;
@@ -551,7 +571,7 @@
           <div class="brand-mark"></div>
           <div>
             <div>CHESTNUT BIOCHAR</div>
-            <div style="font-size:12px;color:var(--muted);font-weight:500;">밤 외피 기반 바이오차</div>
+            <div style="font-size:12px;color:var(--muted);font-weight:500;">밤 가시외피 기반 비료보조제</div>
           </div>
         </div>
         <nav class="nav-links">
@@ -571,7 +591,7 @@
             <div class ="container">
               <div class="eyebrow"> 친환경 밤껍질 바이오차, 국내 비료 규격으로 시장 진입</div>
               <h1>버려지는 밤껍질<br>농업과 탄소의<br>자원으로</h1>
-              <p class="lead">2024년 비료공정규격 개정으로 국내 제조·판매가 가능해진 밤껍질 바이오차<br>토양 개선, 탄소 저감, 지역 자원순환 가치를 동시에 실현하는 농업·환경 솔루션입니다.</p>
+              <p class="lead">2024년 비료공정규격 개정으로 국내 제조·판매가 가능해진 밤껍질 비료보조제<br>토양 개선, 탄소 저감, 지역 자원순환 가치를 동시에 실현하는 농업·환경 솔루션입니다.</p>
               <div class="hero-actions">
                 <a class="btn-primary" href="#contact">사업 문의하기</a>
                 <a class="btn-secondary" href="#process">공정 보기</a>
@@ -581,7 +601,7 @@
             <div class="metrics">
               <div class="metric">
                 <div class="n">01</div>
-                <div class="t">밤껍질 기반 바이오차</div>
+                <div class="t">밤껍질 기반 보조비료제</div>
               </div>
               <div class="metric">
                 <div class="n">02</div>
@@ -593,7 +613,6 @@
               </div>
             </div>
           </div>
-        
 
 
           <div class="hero-visual">
@@ -603,7 +622,7 @@
             <div class="hero-side-panel">
               <div class="hero-side-card">
                 <strong>효능</strong>
-                <p><b>밤껍질 바이오차</b><br>토양 탄력성, 수분 보유력, 탄소 감축</p>
+                <p><b>밤껍질 비료보조제(바이오차)</b><br>토양 탄력성, 수분 보유력, 탄소 감축</p>
               </div>
               <div class="hero-side-image-block">
                 <img src="제목 없는 디자인.png" alt="보조 일러스트">
@@ -619,7 +638,7 @@
 
         <div class="container">
           <div class="hero-comment">
-            <p>밤껍질을 자원으로 전환해 농업 현장의 비용과 탄소 부담을 동시에 줄입니다.</p>
+            <p>밤껍질을 자원으로 전환해 농업 현장의 비용과 탄소 부담을 동시에 줄입니다.<br>이러한 <b>친환경 비료보조제는 바이오차(Bio Char)</b>라고 합니다.</p>
           </div>
         </div>
       </section>
@@ -634,7 +653,7 @@
             <div class="card split-panel">
               <div class="icon-dot">!</div>
               <h3>처리 부담에서 자원으로</h3>
-              <p>밤껍질은 계절적으로 한꺼번에 발생하는 농산 부산물입니다. 기존에는 폐기 비용과 보관 부담이 큰 자원인데, 바이오차로 전환하면 지역 순환 자원으로 탈바꿈합니다.</p>
+              <p>밤껍질은 계절적으로 한꺼번에 발생하는 농산 부산물입니다. 기존에는 폐기 태움 비용과 보관 부담이 큰 자원인데, 바이오차로 전환하면 지역 순환 자원으로 탈바꿈합니다.</p>
             </div>
             <div class="card split-panel">
               <div class="icon-dot">→</div>
@@ -665,7 +684,7 @@
             <div class="card">
               <div class="icon-dot">R</div>
               <h3>지역 순환</h3>
-              <p>밤껍질을 지역 내에서 수집·처리해 제품화하면, 폐기 비용을 줄이고 지역 농업 생태계를 강화할 수 있습니다.</p>
+              <p>밤껍질을 지역 내에서 수집·처리해 제품화하면, 폐기 비용과 환경오염을 줄이고 지역 농업 생태계를 강화할 수 있습니다.</p>
             </div>
           </div>
         </div>
@@ -702,20 +721,11 @@
         </div>
       </section>
 
-      <section class="reveal">
-        <div class="container">
-          <div class="section-head">
-            <h2>브랜드 무드와 제품 존재감</h2>
-            <p>포대 제품 자체가 이 사업의 상징이 되도록, 실물감 있는 비주얼과 부유 모션을 랜딩 전반의 핵심 장치로 사용합니다.</p>
-          </div>
-        </div>
-      </section>
-
       <section id="usecase" class="reveal">
         <div class="container">
           <div class="section-head">
             <h2>적용 분야</h2>
-            <p>사업의 메시지가 실제 수요처로 연결되도록 네 가지 활용 장면을 중심으로 구성했습니다.</p>
+            <p>우리 사업의 주력 실제 수요처입니다.</p>
           </div>
           <div class="use-grid">
             <div class="card use-item">
@@ -743,8 +753,8 @@
           <div class="cta-box">
             <div class="cta-grid">
               <div>
-                <h2>밤 외피의 잠재력을<br>시장 가치로 연결하세요</h2>
-                <p>공급망 협력, 제품 도입, 시범사업, 투자 검토까지. 바이오차 사업의 다음 단계를 함께 설계할 파트너를 기다립니다.</p>
+                <h2>밤 외피의 폐기로 인한 기회비용<br>시장 가치로 연결하세요</h2>
+                <p>공급망 협력, 제품 도입, 시범사업, 투자 검토까지.<br>바이오차 사업의 다음 단계를 함께 설계할 파트너를 기다립니다.</p>
                 <div class="tag-row">
                   <span class="tag">사업 문의</span>
                   <span class="tag">협력 제안</span>
@@ -788,6 +798,35 @@
         heroImage.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1)';
       });
     }
+
+    // Reveal fallback: ensure .reveal elements become visible.
+    (function ensureReveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      if (!reveals.length) return;
+
+      // Fast fallback: function to add .show
+      const applyShow = () => reveals.forEach(el => el.classList.add('show'));
+      // If DOM already parsed, apply immediately so user sees content now
+      if (document.readyState !== 'loading') applyShow();
+
+      // Try IntersectionObserver first for smooth reveal
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('show');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.06 });
+        reveals.forEach(el => io.observe(el));
+        // Also ensure at least something shows after load (in case observer missed)
+        window.addEventListener('load', applyShow);
+      } else {
+        // Older browsers: reveal on load
+        window.addEventListener('load', applyShow);
+      }
+    })();
   </script>
 </body>
 </html>
