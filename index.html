@@ -138,15 +138,20 @@
       letter-spacing: -0.05em;
       max-width: 720px;
     }
+    .hero-grid > div > .container {
+      transform: translateX(10px);
+      width: calc(100% + 10px);
+    }
     .hero p.lead {
       margin: 24px 0 0;
       color: var(--muted);
       font-size: 18px;
       max-width: 620px;
     }
+
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
     .hero.landing { padding: 72px 0 48px; }
-    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 34px; align-items: center; }
+    .hero-grid { display: grid; grid-template-columns: 0.95fr 1.15fr; gap: 34px; align-items: center; }
     .hero-copy { max-width: 540px; }
     .hero-copy h1 { font-size: clamp(52px, 7vw, 84px); line-height: 1.02; margin-top: 8px; }
     .hero-copy .lead { margin-top: 22px; color: var(--muted); font-size: 18px; max-width: 520px; }
@@ -401,7 +406,7 @@
       0%,100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
-
+<!-- 되는지 체크-->
     section { padding: 42px 0; }
     .section-head { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 24px; }
     .section-head h2 { margin: 0; font-size: clamp(28px, 4vw, 46px); letter-spacing: -0.04em; }
@@ -564,9 +569,9 @@
         <div class="container hero-grid">
           <div>
             <div class ="container">
-              <div class="eyebrow">밤껍질 바이오차, 국내 비료 규격으로 시장 진입</div>
-              <h1>버려지는 밤껍질을<br>농업과 탄소의 자원으로</h1>
-              <p class="lead">2024년 비료공정규격 개정으로 국내 제조·판매가 가능해진 밤껍질 바이오차. 토양 개선, 탄소 저감, 지역 자원순환 가치를 동시에 실현하는 농업·환경 솔루션입니다.</p>
+              <div class="eyebrow"> 친환경 밤껍질 바이오차, 국내 비료 규격으로 시장 진입</div>
+              <h1>버려지는 밤껍질<br>농업과 탄소의<br>자원으로</h1>
+              <p class="lead">2024년 비료공정규격 개정으로 국내 제조·판매가 가능해진 밤껍질 바이오차<br>토양 개선, 탄소 저감, 지역 자원순환 가치를 동시에 실현하는 농업·환경 솔루션입니다.</p>
               <div class="hero-actions">
                 <a class="btn-primary" href="#contact">사업 문의하기</a>
                 <a class="btn-secondary" href="#process">공정 보기</a>
@@ -584,7 +589,7 @@
               </div>
               <div class="metric">
                 <div class="n">03</div>
-                <div class="t">토양개선 + 탄소저감 지원</div>
+                <div class="t">친환경 토양개선 + 탄소저감 지원</div>
               </div>
             </div>
           </div>
@@ -598,14 +603,15 @@
             <div class="hero-side-panel">
               <div class="hero-side-card">
                 <strong>효능</strong>
-                <p>밤껍질 바이오차가 토양 탄력성, 수분 보유력, 탄소 감축까지 동시에 제공하는 핵심 가치를 보여줍니다.</p>
+                <p><b>밤껍질 바이오차</b><br>토양 탄력성, 수분 보유력, 탄소 감축</p>
               </div>
               <div class="hero-side-image-block">
                 <img src="제목 없는 디자인.png" alt="보조 일러스트">
               </div>
               <div class="hero-side-cost">
-                <span>Cost</span>
-                <strong>합리적 단가로 경쟁력 있는 시장 진입 구조</strong>
+                <strong>가격</strong>
+                <p>1kg당<p>
+                <strong>000000₩</strong>
               </div>
             </div>
           </div>
@@ -613,11 +619,11 @@
 
         <div class="container">
           <div class="hero-comment">
-            <p>밤껍질을 자원으로 전환해 농업 현장의 비용과 탄소 부담을 동시에 줄이는, 사업의 핵심 메시지를 한 문장으로 정리한 코멘트입니다.</p>
+            <p>밤껍질을 자원으로 전환해 농업 현장의 비용과 탄소 부담을 동시에 줄입니다.</p>
           </div>
         </div>
       </section>
-
+<!--여기 안보임.-->
       <section id="story" class="reveal">
         <div class="container">
           <div class="section-head">
