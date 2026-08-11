@@ -195,7 +195,7 @@
     }
     .btn-primary, .btn-secondary {
       display: inline-flex; align-items: center; justify-content: center;
-      min-height: 52px; padding: 0 22px; border-radius: 999px; font-weigㄴht: 700;
+      min-height: 52px; padding: 0 22px; border-radius: 999px; font-weight: 700;
     }
     .btn-primary {
       background: linear-gradient(135deg, var(--amber), #cf7d37);
@@ -228,12 +228,108 @@
       position: relative;
       min-height: 720px;
       display: grid;
-      grid-template-columns: minmax(420px, 1.2fr) 320px;
-      gap: 28px;
+      grid-template-columns: minmax(420px, 1.2fr) 500px;
+      gap: 18px;
       align-items: center;
       overflow: visible;
-      width: min(100%, calc(var(--max) + 80px));
-      margin-left: -20px;
+      width: min(1240px, 100%);
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-display {
+      position: relative;
+      min-height: 720px;
+    }
+    .hero-display .hero-interview {
+      display: none;
+      width: 100%;
+      margin-top: 0;
+    }
+    .hero-display.show-interview .hero-visual {
+      display: none;
+    }
+    .hero-display.show-interview .hero-interview {
+      display: flex;
+      justify-content: center;
+    }
+    .hero-interview {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 720px;
+      padding: 24px 0;
+      gap: 24px;
+    }
+    .interview-headline {
+      text-align: center;
+      color: white;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.1;
+      font-weight: 800;
+      max-width: 760px;
+    }
+    .interview-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      width: min(760px, 100%);
+      align-items: stretch;
+    }
+    .interview-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      width: 100%;
+      max-width: 760px;
+      padding: 24px 28px;
+      min-height: 130px;
+      border-radius: 32px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: 0 28px 60px rgba(0,0,0,0.22);
+    }
+    .interview-icon {
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.12);
+      padding: 12px;
+      object-fit: contain;
+    }
+    .interview-card .interview-comment {
+      margin: 0;
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+    }
+    .hero-interview > img {
+      width: 100%;
+      border-radius: 28px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-toggle {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+    .toggle-btn {
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 700;
+      transition: background .2s ease, border-color .2s ease;
+    }
+    .toggle-btn.active {
+      background: linear-gradient(135deg, rgba(226,155,77,0.16), rgba(255,255,255,0.08));
+      border-color: rgba(226,155,77,0.35);
     }
     .hero-image-wrap {
       width: 100%;
@@ -254,8 +350,10 @@
     .hero-image-wrap:hover img { cursor: grabbing; }
     .hero-side-panel {
       display: grid;
-      gap: 18px;
+      gap: 16px;
       align-content: start;
+      padding-right: 0;
+      padding-left: 6px;
     }
     .hero-side-card,
     .hero-side-cost {
@@ -565,6 +663,8 @@
     .use-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
     .use-item { min-height: 210px; }
     .use-item strong { display:block; margin-bottom: 10px; font-size: 20px; }
+    .usecase-visual { margin-top: 24px; display: flex; justify-content: center; }
+    .usecase-visual img { width: 100%; max-width: 1180px; border-radius: 20px; box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,0.12); }
 
     .cta { padding: 40px 0 84px; }
     .cta-box {
@@ -661,6 +761,10 @@
                 <a class="btn-primary" href="#contact">사업 문의하기</a>
                 <a class="btn-secondary" href="#process">공정 보기</a>
               </div>
+              <div class="hero-toggle">
+                <button type="button" class="toggle-btn active" data-target="visual">A. 상품 소개</button>
+                <button type="button" class="toggle-btn" data-target="interview">B. 타겟 인터뷰</button>
+              </div>
             </div>
         </div>
             <div class="metrics">
@@ -680,22 +784,43 @@
           </div>
 
 
-          <div class="hero-visual">
-            <div class="hero-image-wrap" id="heroImageStage">
-              <img id="heroImage" src="chestnut shell biochar fertilizer.png" alt="밤 외피 바이오차 비료 이미지">
+          <div class="hero-display" id="heroDisplay">
+            <div class="hero-visual">
+              <div class="hero-image-wrap" id="heroImageStage">
+                <img id="heroImage" src="chestnut shell biochar fertilizer.png" alt="밤 외피 바이오차 비료 이미지">
+              </div>
+              <div class="hero-side-panel">
+                <div class="hero-side-card">
+                  <strong>효능</strong>
+                  <p><b>밤껍질 비료보조제(바이오차)</b><br>토양 탄력성, 수분 보유력, 탄소 감축</p>
+                </div>
+                <div class="hero-side-image-block">
+                  <img src="제목 없는 디자인.png" alt="보조 일러스트">
+                </div>
+                <div class="hero-side-cost">
+                  <strong>가격</strong>
+                  <p>1kg당<p>
+                  <strong>1,800₩(원)</strong>
+                </div>
+              </div>
             </div>
-            <div class="hero-side-panel">
-              <div class="hero-side-card">
-                <strong>효능</strong>
-                <p><b>밤껍질 비료보조제(바이오차)</b><br>토양 탄력성, 수분 보유력, 탄소 감축</p>
+            <div class="hero-interview">
+              <div class="interview-headline">
+                <strong>농민들의 이야기<br>귀로 들었습니다!</strong>
               </div>
-              <div class="hero-side-image-block">
-                <img src="제목 없는 디자인.png" alt="보조 일러스트">
-              </div>
-              <div class="hero-side-cost">
-                <strong>가격</strong>
-                <p>1kg당<p>
-                <strong>1,800₩(원)</strong>
+              <div class="interview-cards">
+                <article class="interview-card">
+                  <img src="famer_ icon.png" alt="농민 아이콘" class="interview-icon">
+                  <p class="interview-comment">농민 강씨<br>"바이오차가 좋은 건 아는데, 너무 비쌉니다...(중략)"</p>
+                </article>
+                <article class="interview-card">
+                  <img src="famer_ icon.png" alt="농민 아이콘" class="interview-icon">
+                  <p class="interview-comment">농사꾼 현씨<br>"제가 사는 공주 지역에서 바이오차를 구매하고 싶어요,<br> 이를 테면 축협이라던가..."</p>
+                </article>
+                <article class="interview-card">
+                  <img src="famer_ icon.png" alt="농민 아이콘" class="interview-icon">
+                  <p class="interview-comment">농민 김씨<br>"비싼 작물을 기르고 있어서 좋은 비료와 영양제를 써야하는데, 외국 것은 너무 비싸요.<br>국내 생산 제품이 싸게 하나 나왔으면 좋겠어요."</p>
+                </article>
               </div>
             </div>
           </div>
@@ -815,6 +940,9 @@
               <p>순환자원 활용과 탄소 스토리를 기반으로 기업 협력·지자체 사업과 연결합니다.</p>
             </div>
           </div>
+          <div class="usecase-visual">
+            <img src="busy model.jpg" alt="적용 분야 추가 이미지">
+          </div>
         </div>
       </section>
 
@@ -850,6 +978,7 @@
 
     <footer>
       <div class="container">Chestnut Char Landing Prototype · 밤 외피 기반 바이오차 사업 소개용 시안</div>
+      <div class="copyright"><a href="https://www.flaticon.com/kr/free-icons/" title="농장주 아이콘">농장주 아이콘 제작자: Magnific - Flaticon</a></div>
     </footer>
   </div>
   <script>
@@ -868,6 +997,21 @@
         heroImage.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1)';
       });
     }
+
+    const heroDisplay = document.getElementById('heroDisplay');
+    const toggleButtons = document.querySelectorAll('.toggle-btn');
+    toggleButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.target;
+        toggleButtons.forEach(el => el.classList.toggle('active', el === btn));
+        if (!heroDisplay) return;
+        if (target === 'interview') {
+          heroDisplay.classList.add('show-interview');
+        } else {
+          heroDisplay.classList.remove('show-interview');
+        }
+      });
+    });
 
     // Reveal fallback: ensure .reveal elements become visible.
     (function ensureReveal() {
