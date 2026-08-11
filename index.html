@@ -318,6 +318,10 @@
       background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.85), rgba(255,255,255,0.05));
       opacity: 0.95;
     }
+    /* allow the divider to be positioned across the hero grid columns */
+    .container.hero-grid { position: relative; }
+    .hero-divider { position: absolute; left: 0; box-sizing: border-box; z-index: 0; }
+    .hero-divider-placeholder { height: 32px; }
     .hero-toggle {
       display: flex;
       gap: 12px;
@@ -769,6 +773,7 @@
                 <a class="btn-secondary" href="#process">공정 보기</a>
               </div>
               <div class="hero-divider" aria-hidden="true"></div>
+              <div class="hero-divider-placeholder" aria-hidden="true"></div>
               <div class="hero-toggle">
                 <button type="button" class="toggle-btn active" data-target="visual">A. 상품 소개</button>
                 <button type="button" class="toggle-btn" data-target="interview">B. 타겟 인터뷰</button>
@@ -1049,6 +1054,36 @@
         window.addEventListener('load', applyShow);
       }
     })();
+
+    // Position hero divider to reach the right edge of .hero-side-card
+    function positionHeroDivider() {
+      const grid = document.querySelector('.container.hero-grid');
+      const sideCard = document.querySelector('.hero-side-card');
+      const divider = document.querySelector('.hero-divider');
+      const actions = document.querySelector('.hero-actions');
+      const toggle = document.querySelector('.hero-toggle');
+      if (!grid || !sideCard || !divider || !actions || !toggle) return;
+      const gridRect = grid.getBoundingClientRect();
+      const sideRect = sideCard.getBoundingClientRect();
+      const actionsRect = actions.getBoundingClientRect();
+      const toggleRect = toggle.getBoundingClientRect();
+      // place divider vertically centered between actions bottom and toggle top
+      const dividerHeight = divider.offsetHeight || 2;
+      const mid = (actionsRect.bottom + toggleRect.top) / 2;
+      const top = mid - dividerHeight / 2 - gridRect.top;
+      const width = Math.max(0, sideRect.right - gridRect.left);
+      divider.style.position = 'absolute';
+      divider.style.left = '0px';
+      divider.style.top = Math.round(top) + 'px';
+      divider.style.width = Math.round(width) + 'px';
+      divider.style.margin = '0';
+      divider.style.zIndex = '0';
+    }
+
+    window.addEventListener('load', positionHeroDivider);
+    window.addEventListener('resize', positionHeroDivider);
+    // small delay for images/fonts
+    setTimeout(positionHeroDivider, 120);
   </script>
 </body>
 </html>
