@@ -112,10 +112,12 @@
     .hero { padding: 72px 0 36px; }
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 0.95fr 1.15fr;
       gap: 34px;
       align-items: center;
     }
+    .hero-copy { order: 2; }
+    .hero-visual { order: 1; }
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -201,14 +203,16 @@
       position: relative;
       min-height: 720px;
       display: grid;
-      grid-template-columns: minmax(320px, 1fr) 280px;
-      gap: 22px;
+      grid-template-columns: minmax(420px, 1.2fr) 320px;
+      gap: 28px;
       align-items: center;
       overflow: visible;
+      width: min(100%, calc(var(--max) + 80px));
+      margin-left: -20px;
     }
     .hero-image-wrap {
       width: 100%;
-      max-width: 620px;
+      max-width: 720px;
       display: block;
       perspective: 1200px;
     }
@@ -559,6 +563,16 @@
       <section class="hero">
         <div class="container hero-grid">
           <div>
+            <div class ="container">
+              <div class="eyebrow">밤껍질 바이오차, 국내 비료 규격으로 시장 진입</div>
+              <h1>버려지는 밤껍질을<br>농업과 탄소의 자원으로</h1>
+              <p class="lead">2024년 비료공정규격 개정으로 국내 제조·판매가 가능해진 밤껍질 바이오차. 토양 개선, 탄소 저감, 지역 자원순환 가치를 동시에 실현하는 농업·환경 솔루션입니다.</p>
+              <div class="hero-actions">
+                <a class="btn-primary" href="#contact">사업 문의하기</a>
+                <a class="btn-secondary" href="#process">공정 보기</a>
+              </div>
+            </div>
+        </div>
             <div class="metrics">
               <div class="metric">
                 <div class="n">01</div>
@@ -575,15 +589,7 @@
             </div>
           </div>
         
-        <div class ="container">
-            <div class="eyebrow">밤껍질 바이오차, 국내 비료 규격으로 시장 진입</div>
-            <h1>버려지는 밤껍질을<br>농업과 탄소의 자원으로</h1>
-            <p class="lead">2024년 비료공정규격 개정으로 국내 제조·판매가 가능해진 밤껍질 바이오차. 토양 개선, 탄소 저감, 지역 자원순환 가치를 동시에 실현하는 농업·환경 솔루션입니다.</p>
-            <div class="hero-actions">
-              <a class="btn-primary" href="#contact">사업 문의하기</a>
-              <a class="btn-secondary" href="#process">공정 보기</a>
-            </div>
-        </div>
+
 
           <div class="hero-visual">
             <div class="hero-image-wrap" id="heroImageStage">
