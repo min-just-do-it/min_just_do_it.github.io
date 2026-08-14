@@ -1085,5 +1085,13 @@
     // small delay for images/fonts
     setTimeout(positionHeroDivider, 120);
   </script>
+// 백엔드 서버에 데이터 요청하기
+fetch('http://localhost:3000/api/chestnut')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data); // 브라우저 개발자 도구(F12) 콘솔창에서 확인 가능
+    alert(data.message); // 화면에 알림창으로 백엔드가 보낸 문구 띄우기
+  })
+  .catch(error => console.error('백엔드 연결 실패:', error));
 </body>
 </html>
