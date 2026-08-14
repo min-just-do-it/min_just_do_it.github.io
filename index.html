@@ -1085,13 +1085,43 @@
     // small delay for images/fonts
     setTimeout(positionHeroDivider, 120);
   </script>
-// 백엔드 서버에 데이터 요청하기
-fetch('http://localhost:3000/api/chestnut')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data); // 브라우저 개발자 도구(F12) 콘솔창에서 확인 가능
-    alert(data.message); // 화면에 알림창으로 백엔드가 보낸 문구 띄우기
-  })
-  .catch(error => console.error('백엔드 연결 실패:', error));
+  // 페이지가 열리면 자동으로 실행
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    // 1. "사업 문의하기" 버튼을 찾습니다. (텍스트 기준)
+    const ctaButtons = document.querySelectorAll('button, a');
+    let inquiryButton = null;
+    
+    ctaButtons.forEach(btn => {
+      if(btn.textContent.includes('사업 문의하기')) {
+        inquiryButton = btn;
+      }
+    });
+
+    // 2. 버튼이 존재하면 클릭 이벤트를 연결합니다.
+    if (inquiryButton) {
+      // 링크 이동 기능이 있다면 잠시 막기
+      inquiryButton.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        
+        // 내 컴퓨터에서 실행 중인 백엔드 API 호출
+        fetch('http://localhost:3000/api/chestnut')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('네트워크 응답에 문제가 있습니다.');
+            }
+            return response.json();
+          })
+          .then(data => {
+            // 성공하면 백엔드가 보낸 문구를 알림창으로 띄웁니다.
+            alert(data.message);
+          })
+          .catch(error => {
+            console.error('백엔드 연결 실패:', error);
+            alert('현재 백엔드 서버가 켜져 있지 않거나 연결할 수 없습니다!');
+          });
+      });
+    }
+  });
 </body>
 </html>
